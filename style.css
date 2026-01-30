@@ -102,7 +102,7 @@ nav.scrolled {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--color-dark);
+    color: var(--text-main);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -127,19 +127,21 @@ nav.scrolled {
 }
 
 .cta-button {
-    background: var(--gradient-hero);
-    color: white;
-    padding: 0.8rem 1.5rem;
+    background: var(--gradient-hero) !important;
+    color: white !important;
+    padding: 0.8rem 1.8rem;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
     transition: var(--transition-smooth);
+    display: inline-block;
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+    filter: brightness(1.1);
 }
 
 /* Hero Section */
@@ -190,7 +192,7 @@ nav.scrolled {
 
 .hero p {
     font-size: 1.25rem;
-    color: var(--color-text-dim);
+    color: var(--text-dim);
     margin-bottom: 2.5rem;
 }
 
@@ -246,7 +248,7 @@ nav.scrolled {
 
 .price span {
     font-size: 1.25rem;
-    color: var(--color-text-dim);
+    color: var(--text-dim);
 }
 
 .features {
@@ -259,7 +261,7 @@ nav.scrolled {
     padding: 0.75rem 0;
     padding-left: 2rem;
     position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .features li::before {
@@ -272,28 +274,29 @@ nav.scrolled {
 
 /* Footer */
 footer {
-    background: var(--color-dark);
-    color: white;
+    background: var(--bg-card);
+    color: var(--text-main);
     padding: 4rem 0 2rem;
     text-align: center;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-content h2 {
-    color: white;
+    color: var(--text-main);
     margin-bottom: 1rem;
 }
 
 .footer-content p {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-dim);
     margin-bottom: 2rem;
 }
 
 .copyright {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-dim);
 }
 
 /* Contact Area Revamp */
@@ -317,7 +320,7 @@ footer {
 
 .contact-info-card a {
     text-decoration: none;
-    color: var(--color-dark);
+    color: var(--text-main);
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -371,7 +374,7 @@ footer {
 .form-group label {
     font-weight: 700;
     font-size: 0.85rem;
-    color: var(--color-dark);
+    color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding-left: 0.5rem;
@@ -380,14 +383,20 @@ footer {
 .form-group input,
 .form-group textarea {
     padding: 1.2rem;
-    border: 2px solid #edf2f7;
+    border: 2px solid var(--border-color);
     border-radius: 18px;
     font-family: var(--font-body);
     font-size: 1rem;
-    background: #fdfdfd;
+    background: var(--bg-main);
     transition: var(--transition-smooth);
     width: 100%;
-    color: var(--color-dark);
+    color: var(--text-main);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-dim);
+    opacity: 0.7;
 }
 
 /* Select Styling */
@@ -409,14 +418,14 @@ footer {
 
 .form-group select {
     padding: 1.2rem;
-    border: 2px solid #edf2f7;
+    border: 2px solid var(--border-color);
     border-radius: 18px;
     font-family: var(--font-body);
     font-size: 1rem;
-    background: #fdfdfd;
+    background: var(--bg-main);
     transition: var(--transition-smooth);
     width: 100%;
-    color: var(--color-dark);
+    color: var(--text-main);
     appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
@@ -427,7 +436,7 @@ footer {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    background: white;
+    background: var(--bg-card);
     box-shadow: 0 10px 25px rgba(99, 102, 241, 0.12);
 }
 
