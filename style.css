@@ -242,9 +242,12 @@ nav.scrolled {
     box-shadow: var(--shadow-premium);
     transition: var(--transition-smooth);
     display: inline-block;
+    width: 220px;
+    text-align: center;
     position: relative;
     overflow: hidden;
     border: 2px solid var(--cyan-soft);
+    align-self: center;
 }
 
 .cta-button::before {
