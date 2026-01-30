@@ -30,25 +30,55 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollReveal();
 });
 
-// Form Submission Handler
+// Form Submission Handler (Formspree Integration)
 const quoteForm = document.getElementById('quote-form');
 if (quoteForm) {
-    quoteForm.addEventListener('submit', function (e) {
+    quoteForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        // Get form data
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.innerHTML;
+
+        // Show loading state
+        submitBtn.innerHTML = "Envoi en cours... ⏳";
+        submitBtn.style.opacity = "0.7";
+        submitBtn.disabled = true;
+
         const formData = new FormData(this);
         const name = formData.get('name');
 
-        // Simulate success
-        const card = document.querySelector('.quote-form-card');
-        card.innerHTML = `
-            <div class="form-success">
-                <h3>Merci ${name} ! 🚀</h3>
-                <p>Votre demande de devis a bien été envoyée. Je reviens vers vous sous 24h à 48h pour discuter de votre projet.</p>
-                <button onclick="location.reload()" class="submit-btn" style="margin-top: 1.5rem;">Envoyer un autre message</button>
-            </div>
-        `;
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Success: Show custom premium message
+                const card = document.querySelector('.quote-form-card');
+                card.innerHTML = `
+                    <div class="form-success">
+                        <h3>Merci ${name} ! 🚀</h3>
+                        <p>Votre demande de devis a bien été envoyée. Je reviens vers vous sous 24h à 48h pour discuter de votre projet.</p>
+                        <button onclick="location.reload()" class="submit-btn" style="margin-top: 1.5rem;">Envoyer un autre message</button>
+                    </div>
+                `;
+                this.reset();
+            } else {
+                // Error handling
+                const errorData = await response.json();
+                throw new Error(errorData.errors ? errorData.errors.map(err => err.message).join(', ') : "Erreur lors de l'envoi");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            submitBtn.innerHTML = "❌ Erreur - Réessayer";
+            submitBtn.style.opacity = "1";
+            submitBtn.disabled = false;
+            alert("Oups ! Une erreur est survenue : " + error.message);
+        }
     });
 }
 
