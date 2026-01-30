@@ -95,8 +95,10 @@ class Starfield {
             star.twinkle += star.twinkleSpeed;
             const opacity = star.brightness * (0.6 + Math.sin(star.twinkle) * 0.4);
 
-            const parallaxY = (star.y - (this.scrollOffset * star.depth * 0.2)) % this.canvas.height;
-            const finalY = parallaxY < 0 ? parallaxY + this.canvas.height : parallaxY;
+            const height = Math.max(1, this.canvas.height);
+            const scroll = this.scrollOffset || 0;
+            const parallaxY = (star.y - (scroll * star.depth * 0.2)) % height;
+            const finalY = parallaxY < 0 ? parallaxY + height : parallaxY;
 
             this.ctx.beginPath();
             this.ctx.arc(star.x, finalY, star.size, 0, Math.PI * 2);
