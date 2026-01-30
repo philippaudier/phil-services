@@ -461,7 +461,7 @@ nav.scrolled {
     width: 48px;
     height: 48px;
     stroke: var(--cyan);
-    stroke-width: 1.5px;
+    stroke-width: 1.2px;
     filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.8));
 }
 
