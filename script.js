@@ -1,3 +1,8 @@
+// Initialize Lucide Icons
+if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+}
+
 // Sticky Navigation
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {

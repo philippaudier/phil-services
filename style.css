@@ -448,7 +448,24 @@ nav.scrolled {
 .card-icon {
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.6));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-icon i,
+.card-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--cyan);
+    stroke-width: 1.5px;
+    filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.8));
+}
+
+.featured .card-icon i,
+.featured .card-icon svg {
+    stroke: var(--purple-neon);
+    filter: drop-shadow(0 0 15px rgba(191, 64, 191, 0.8));
 }
 
 .pricing-card h3 {
