@@ -5,6 +5,9 @@ if (typeof lucide !== 'undefined') {
 
 // Sticky Navigation
 const navbar = document.getElementById('navbar');
+const mobileToggle = document.getElementById('mobile-toggle');
+const navLinks = document.getElementById('nav-links');
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -12,6 +15,24 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
     }
 });
+
+// Mobile Menu Toggle
+if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+        mobileToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+}
 
 // Scroll Reveal Animation
 const revealElements = document.querySelectorAll('.reveal');

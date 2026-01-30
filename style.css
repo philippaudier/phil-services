@@ -39,6 +39,14 @@
     --gradient-sunset: linear-gradient(135deg, #ff6b35 0%, #bf40bf 100%);
     --gradient-void: linear-gradient(180deg, #0a0e27 0%, #0d1129 100%);
 
+    /* Responsive Spacing & Typography */
+    --container-width: 1200px;
+    --section-padding: clamp(4rem, 8vw, 10rem);
+    --h1-size: clamp(2.5rem, 8vw, 5.5rem);
+    --h2-size: clamp(2rem, 5vw, 3.5rem);
+    --h3-size: clamp(1.5rem, 3vw, 2.2rem);
+    --body-size: clamp(1rem, 1.2vw, 1.15rem);
+
     /* Typography */
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Rajdhani', sans-serif;
@@ -227,6 +235,38 @@ nav.scrolled {
     transform: translateX(-50%) scaleX(1);
 }
 
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--cyan);
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-neon);
+}
+
+/* Hamburger Open State */
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 /* Neon CTA Button */
 .cta-button {
     background: var(--gradient-space) !important;
@@ -329,6 +369,12 @@ nav.scrolled {
     66% {
         transform: translate(-40px, 40px) scale(0.95);
     }
+}
+
+section {
+    padding: var(--section-padding) 0;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
@@ -843,8 +889,12 @@ footer::before {
 
 @media (max-width: 1024px) {
     .hero h1 {
-        font-size: 4rem;
+        font-size: clamp(2.5rem, 8vw, 4rem);
     }
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
@@ -865,15 +915,37 @@ footer::before {
     }
 
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 350px;
+        height: 100vh;
+        background: rgba(5, 5, 20, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        border-left: 2px solid var(--cyan-soft);
+        z-index: 1000;
+        display: flex;
+    }
+
+    .nav-links.active {
+        right: 0;
+        box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-menu-btn {
+        display: flex;
     }
 
     .pricing-grid {
         grid-template-columns: 1fr;
-    }
-
-    .pricing-card.featured {
-        transform: scale(1);
+        padding: 0 1rem;
+        gap: 3rem;
     }
 
     .pricing-card.featured:hover {
@@ -881,7 +953,13 @@ footer::before {
     }
 
     .quote-form {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+
+    .form-group.full-width,
+    .submit-btn {
+        grid-column: span 1 !important;
     }
 
     .form-group.full-width,
@@ -896,13 +974,24 @@ footer::before {
         text-align: center;
     }
 
-    .quote-form-card {
-        padding: 2.5rem 1.5rem;
-    }
-
     .hero-btns {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-btns .cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .about-content {
+        gap: 3rem;
+    }
+
+    .about-content img {
+        width: 180px !important;
+        height: 180px !important;
     }
 }
 
