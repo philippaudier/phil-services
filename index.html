@@ -157,21 +157,17 @@
 
     <section id="contact" style="background: white;">
         <div class="container reveal">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="text-align: center; margin-bottom: 3rem;">Demander un devis gratuit</h2>
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h3>Phil Services</h3>
-                        <p>Philippe Audier, votre partenaire digital.</p>
-                        <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
-                            <a href="mailto:contact@phil-services.fr"
-                                style="text-decoration: none; color: var(--color-primary); font-weight: 600;">📧
-                                contact@phil-services.fr</a>
-                            <a href="tel:0670622258"
-                                style="text-decoration: none; color: var(--color-dark); font-weight: 600;">📞 06 70 62
-                                22 58</a>
-                        </div>
-                    </div>
+            <h2 style="text-align: center; margin-bottom: 1rem;">Demander un devis gratuit</h2>
+            <p style="text-align: center; color: var(--color-text-dim); margin-bottom: 3rem;">Réponse rapide garantie
+                sous 24h à 48h.</p>
+
+            <div class="contact-wrapper">
+                <div class="contact-info-card">
+                    <a href="mailto:contact@phil-services.fr"><span>📧</span> contact@phil-services.fr</a>
+                    <a href="tel:0670622258"><span>📞</span> 06 70 62 22 58</a>
+                </div>
+
+                <div class="quote-form-card">
                     <form id="quote-form" class="quote-form">
                         <div class="form-group">
                             <label for="name">Votre nom</label>
@@ -181,7 +177,7 @@
                             <label for="email">Votre email</label>
                             <input type="email" id="email" name="email" placeholder="Ex: jean@exemple.fr" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label for="pack">Pack souhaité</label>
                             <select id="pack" name="pack">
                                 <option value="decouverte">Pack Découverte (690€)</option>
@@ -190,13 +186,12 @@
                                 <option value="autre">Autre / Projet sur mesure</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label for="message">Parlez-moi de votre projet</label>
-                            <textarea id="message" name="message" rows="4"
+                            <textarea id="message" name="message" rows="5"
                                 placeholder="Objectifs, nombre de pages, inspirations..." required></textarea>
                         </div>
-                        <button type="submit" class="cta-button"
-                            style="width: 100%; border: none; cursor: pointer;">Envoyer ma demande</button>
+                        <button type="submit" class="submit-btn">Envoyer ma demande 🚀</button>
                     </form>
                 </div>
             </div>

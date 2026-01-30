@@ -41,12 +41,12 @@ if (quoteForm) {
         const name = formData.get('name');
 
         // Simulate success
-        const wrapper = this.parentElement;
-        wrapper.innerHTML = `
+        const card = document.querySelector('.quote-form-card');
+        card.innerHTML = `
             <div class="form-success">
                 <h3>Merci ${name} ! 🚀</h3>
                 <p>Votre demande de devis a bien été envoyée. Je reviens vers vous sous 24h à 48h pour discuter de votre projet.</p>
-                <button onclick="location.reload()" class="cta-button" style="margin-top: 1.5rem; border: none; cursor: pointer;">Envoyer un autre message</button>
+                <button onclick="location.reload()" class="submit-btn" style="margin-top: 1.5rem;">Envoyer un autre message</button>
             </div>
         `;
     });
