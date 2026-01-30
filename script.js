@@ -30,6 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollReveal();
 });
 
+// Sync Pricing Selection with Form
+document.querySelectorAll('.pricing-card .cta-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const packValue = this.getAttribute('data-pack');
+        const packSelect = document.getElementById('pack');
+        if (packValue && packSelect) {
+            packSelect.value = packValue;
+        }
+    });
+});
+
 // Form Submission Handler (Formspree Integration)
 const quoteForm = document.getElementById('quote-form');
 if (quoteForm) {
