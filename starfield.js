@@ -29,35 +29,51 @@ class Starfield {
     initStars() {
         this.stars = [];
         for (let i = 0; i < this.count; i++) {
+            const colorVariation = Math.random();
+            let color;
+            if (colorVariation > 0.9) {
+                color = 'rgba(0, 217, 255, '; // Cyan
+            } else if (colorVariation > 0.85) {
+                color = 'rgba(191, 64, 191, '; // Purple
+            } else {
+                color = 'rgba(255, 255, 255, '; // White
+            }
+
             this.stars.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
                 size: Math.random() * 1.5 + 0.5,
-                depth: Math.random() * 0.8 + 0.2, // Parallax depth (0 to 1)
-                twinkle: Math.random() * Math.PI, // Initial phase
+                depth: Math.random() * 0.8 + 0.2,
+                twinkle: Math.random() * Math.PI,
                 twinkleSpeed: Math.random() * 0.03 + 0.01,
-                brightness: Math.random() * 0.5 + 0.5
+                brightness: Math.random() * 0.5 + 0.5,
+                color: color
             });
         }
     }
 
     bindEvents() {
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', () => {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+            this.initStars();
+        });
         window.addEventListener('scroll', () => {
             this.scrollOffset = window.scrollY;
         });
     }
 
     drawNebula() {
-        const time = Date.now() * 0.0001;
+        // Clear background with deep space base color
+        this.ctx.fillStyle = '#0a0e27';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Simple procedural nebula effect using gradients
         // Layer 1: Deep Blue
         const g1 = this.ctx.createRadialGradient(
             this.canvas.width * 0.8, this.canvas.height * 0.2, 0,
             this.canvas.width * 0.8, this.canvas.height * 0.2, this.canvas.width * 0.6
         );
-        g1.addColorStop(0, 'rgba(30, 58, 138, 0.1)');
+        g1.addColorStop(0, 'rgba(30, 58, 138, 0.15)');
         g1.addColorStop(1, 'transparent');
 
         // Layer 2: Deep Purple
@@ -65,7 +81,7 @@ class Starfield {
             this.canvas.width * 0.2, this.canvas.height * 0.8, 0,
             this.canvas.width * 0.2, this.canvas.height * 0.8, this.canvas.width * 0.7
         );
-        g2.addColorStop(0, 'rgba(74, 20, 140, 0.08)');
+        g2.addColorStop(0, 'rgba(74, 20, 140, 0.12)');
         g2.addColorStop(1, 'transparent');
 
         this.ctx.fillStyle = g1;
@@ -76,28 +92,15 @@ class Starfield {
 
     drawStars() {
         this.stars.forEach(star => {
-            // Apply floating movement
             star.twinkle += star.twinkleSpeed;
             const opacity = star.brightness * (0.6 + Math.sin(star.twinkle) * 0.4);
 
-            // Apply Parallax: 
-            // Stars move slightly up/down based on scroll, deeper stars move slower
             const parallaxY = (star.y - (this.scrollOffset * star.depth * 0.2)) % this.canvas.height;
             const finalY = parallaxY < 0 ? parallaxY + this.canvas.height : parallaxY;
 
             this.ctx.beginPath();
             this.ctx.arc(star.x, finalY, star.size, 0, Math.PI * 2);
-
-            // Color variations (slightly cyan, white, or slight purple)
-            const colorVariation = Math.random();
-            if (colorVariation > 0.9) {
-                this.ctx.fillStyle = `rgba(0, 217, 255, ${opacity})`;
-            } else if (colorVariation > 0.85) {
-                this.ctx.fillStyle = `rgba(191, 64, 191, ${opacity})`;
-            } else {
-                this.ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-            }
-
+            this.ctx.fillStyle = star.color + opacity + ')';
             this.ctx.fill();
         });
     }

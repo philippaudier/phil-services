@@ -68,7 +68,36 @@
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    background: var(--bg-main);
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL ATMOSPHERIC SHADERS
+   ═══════════════════════════════════════════ */
+
+.atmospheric-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(0, 217, 255, 0.05), transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(191, 64, 191, 0.05), transparent 40%),
+        radial-gradient(ellipse at center, transparent 30%, rgba(5, 5, 20, 0.4) 100%);
+    mix-blend-mode: screen;
+}
+
+
+/* Chromatic Post-Processing */
+.hero h1,
+.pricing-card h3,
+.cta-button {
+    transition: filter 0.3s ease;
+}
+
+.hero h1:hover,
+.pricing-card:hover h3,
+.cta-button:hover {
+    filter: url(#chromatic-aberration);
 }
 
 * {
@@ -375,6 +404,198 @@ section {
     padding: var(--section-padding) 0;
     position: relative;
     z-index: 1;
+}
+
+/* ═══════════════════════════════════════════
+   QUANTUM RESONANCE HUD AVATAR
+   ═══════════════════════════════════════════ */
+
+.avatar-container {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+    perspective: 1000px;
+}
+
+.avatar-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cyan-soft);
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+    position: relative;
+    z-index: 5;
+    filter: contrast(1.1) brightness(1.1) saturate(1.2);
+    transition: var(--transition-smooth);
+}
+
+.avatar-container:hover .avatar-img {
+    filter: url(#refractive-glass) url(#chromatic-aberration);
+    transform: rotateX(10deg) rotateY(10deg);
+}
+
+/* Rotating HUD Frames */
+.hud-frame {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    pointer-events: none;
+}
+
+.hud-frame-1 {
+    width: 210px;
+    height: 210px;
+    border-style: dashed;
+    animation: rotate 15s linear infinite;
+    border-width: 2px;
+}
+
+.hud-frame-2 {
+    width: 230px;
+    height: 230px;
+    border: 1px solid var(--cyan-dim);
+    border-top-color: var(--cyan);
+    border-bottom-color: var(--purple-neon);
+    animation: rotate 20s linear infinite reverse;
+}
+
+.hud-frame-3 {
+    width: 250px;
+    height: 250px;
+    border: 1px dotted rgba(191, 64, 191, 0.4);
+    animation: rotate 30s linear infinite;
+}
+
+/* Data Labels */
+.hud-data-label {
+    position: absolute;
+    font-family: var(--font-accent);
+    font-size: 0.65rem;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    background: rgba(10, 22, 40, 0.8);
+    padding: 2px 6px;
+    border: 1px solid var(--border-cyan);
+    z-index: 10;
+    pointer-events: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: flicker 4s infinite;
+}
+
+.hud-data-label.top-left {
+    top: 10%;
+    left: -20%;
+}
+
+.hud-data-label.bottom-right {
+    bottom: 10%;
+    right: -25%;
+}
+
+/* Brackets */
+.hud-bracket {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--cyan);
+    z-index: 6;
+    pointer-events: none;
+}
+
+.hud-bracket.top-right {
+    top: 15px;
+    right: 15px;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.hud-bracket.bottom-left {
+    bottom: 15px;
+    left: 15px;
+    border-right: 0;
+    border-top: 0;
+}
+
+.avatar-scanline {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 217, 255, 0.15) 50%,
+            transparent 100%);
+    background-size: 100% 20px;
+    z-index: 6;
+    pointer-events: none;
+    animation: scan 4s linear infinite;
+    opacity: 0.5;
+}
+
+/* Animations */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    5%,
+    15%,
+    25% {
+        opacity: 0.4;
+    }
+
+    10%,
+    20% {
+        opacity: 1;
+    }
+}
+
+@keyframes scan {
+    0% {
+        background-position: 0 -100px;
+    }
+
+    100% {
+        background-position: 0 100px;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
 }
 
 .hero-content {

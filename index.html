@@ -29,6 +29,34 @@
 
 <body>
     <!-- Starfield Canvas -->
+    <!-- Atmospheric Overlay -->
+    <div class="atmospheric-overlay"></div>
+
+    <!-- SVG Filters for Post-Processing -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none; visibility: hidden; display: none;"
+        aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="chromatic-aberration">
+                <feColorMatrix type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="SourceGraphic"
+                    result="red" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" in="SourceGraphic"
+                    result="green" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" in="SourceGraphic"
+                    result="blue" />
+                <feOffset dx="-2" dy="0" in="red" result="red-offset" />
+                <feOffset dx="2" dy="0" in="blue" result="blue-offset" />
+                <feBlend mode="screen" in="red-offset" in2="green" result="red-green" />
+                <feBlend mode="screen" in="red-green" in2="blue-offset" />
+            </filter>
+
+            <!-- Refractive Glass / Data Transmission Filter -->
+            <filter id="refractive-glass">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.1" numOctaves="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
     <canvas id="starfield"></canvas>
 
     <nav id="navbar">
@@ -72,8 +100,17 @@
     <section id="about" style="background: var(--bg-main);">
         <div class="container reveal about-content">
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
-                <img src="assets/philservices.webp" alt="Philippe Audier" loading="lazy"
-                    style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border: 3px solid var(--cyan-soft); box-shadow: var(--shadow-premium);">
+                <div class="avatar-container">
+                    <div class="hud-frame hud-frame-1"></div>
+                    <div class="hud-frame hud-frame-2"></div>
+                    <div class="hud-frame hud-frame-3"></div>
+                    <div class="hud-data-label top-left">COORD: α-7</div>
+                    <div class="hud-data-label bottom-right">STATUS: OPTIMAL</div>
+                    <div class="hud-bracket top-right"></div>
+                    <div class="hud-bracket bottom-left"></div>
+                    <img src="assets/philservices.webp" alt="Philippe Audier" loading="lazy" class="avatar-img">
+                    <div class="avatar-scanline"></div>
+                </div>
                 <h2 style="font-size: 3rem;">L'Architecte Digital</h2>
                 <p style="max-width: 750px; line-height: 1.9; font-size: 1.15rem; color: var(--text-main);">
                     Je suis Philippe Audier, votre pilote dans l'expansion de votre univers numérique. Ma mission est de
