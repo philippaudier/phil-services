@@ -1,29 +1,3 @@
-// Theme Switching
-const themeToggle = document.getElementById('theme-toggle');
-const isMobileOrTablet = window.innerWidth < 992; // Tablet/Mobile threshold
-
-// Default logic: Force dark on mobile/tablet, otherwise use storage or light
-let initialTheme = localStorage.getItem('theme');
-
-if (isMobileOrTablet) {
-    initialTheme = 'dark';
-} else if (!initialTheme) {
-    initialTheme = 'light';
-}
-
-// Apply theme immediately
-document.documentElement.setAttribute('data-theme', initialTheme);
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        let theme = document.documentElement.getAttribute('data-theme');
-        let newTheme = theme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-}
-
 // Sticky Navigation
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -91,4 +65,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
