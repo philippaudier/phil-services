@@ -30,6 +30,28 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollReveal();
 });
 
+// Form Submission Handler
+const quoteForm = document.getElementById('quote-form');
+if (quoteForm) {
+    quoteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(this);
+        const name = formData.get('name');
+
+        // Simulate success
+        const wrapper = this.parentElement;
+        wrapper.innerHTML = `
+            <div class="form-success">
+                <h3>Merci ${name} ! 🚀</h3>
+                <p>Votre demande de devis a bien été envoyée. Je reviens vers vous sous 24h à 48h pour discuter de votre projet.</p>
+                <button onclick="location.reload()" class="cta-button" style="margin-top: 1.5rem; border: none; cursor: pointer;">Envoyer un autre message</button>
+            </div>
+        `;
+    });
+}
+
 // Smooth Scroll for local links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -43,3 +65,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
