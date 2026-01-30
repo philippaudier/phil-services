@@ -595,6 +595,10 @@ button.theme-switch {
         text-align: center;
     }
 
+    .theme-switch {
+        display: none !important;
+    }
+
     .quote-form-card {
         padding: 2rem 1.5rem;
     }

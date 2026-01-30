@@ -1,9 +1,18 @@
 // Theme Switching
 const themeToggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme') || 'light';
+const isMobileOrTablet = window.innerWidth < 992; // Tablet/Mobile threshold
+
+// Default logic: Force dark on mobile/tablet, otherwise use storage or light
+let initialTheme = localStorage.getItem('theme');
+
+if (isMobileOrTablet) {
+    initialTheme = 'dark';
+} else if (!initialTheme) {
+    initialTheme = 'light';
+}
 
 // Apply theme immediately
-document.documentElement.setAttribute('data-theme', currentTheme);
+document.documentElement.setAttribute('data-theme', initialTheme);
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
