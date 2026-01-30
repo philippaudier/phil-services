@@ -1,21 +1,19 @@
 // Theme Switching
 const themeToggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
+const currentTheme = localStorage.getItem('theme') || 'light';
 
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
+// Apply theme immediately
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        let newTheme = theme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
 }
-
-themeToggle.addEventListener('click', () => {
-    let theme = document.documentElement.getAttribute('data-theme');
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-});
 
 // Sticky Navigation
 const navbar = document.getElementById('navbar');
