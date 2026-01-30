@@ -52,6 +52,17 @@
     --glow-cyan: 0 0 30px rgba(0, 217, 255, 0.6);
 }
 
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--bg-main);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -67,62 +78,14 @@ body {
     position: relative;
 }
 
-/* Animated starfield background */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
-        radial-gradient(2px 2px at 60px 70px, rgba(0, 217, 255, 0.6), transparent),
-        radial-gradient(1px 1px at 50px 50px, white, transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(77, 208, 225, 0.7), transparent),
-        radial-gradient(2px 2px at 90px 10px, white, transparent);
-    background-size: 200px 200px;
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 150px 50px;
-    animation: starfield 120s linear infinite;
-    z-index: -1;
-    opacity: 0.6;
-}
-
-@keyframes starfield {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-200px);
-    }
-}
-
-/* Cosmic nebula effect */
-body::after {
-    content: '';
-    position: fixed;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(74, 20, 140, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 50%);
-    animation: nebula 30s ease-in-out infinite;
-    z-index: -1;
-}
-
-@keyframes nebula {
-
-    0%,
-    100% {
-        transform: rotate(0deg) scale(1);
-    }
-
-    50% {
-        transform: rotate(180deg) scale(1.1);
-    }
+/* Body no longer needs CSS starfield because we have canvas */
+body {
+    font-family: var(--font-body);
+    background: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
 }
 
 h1,
@@ -486,6 +449,15 @@ nav.scrolled {
     font-size: 3rem;
     margin-bottom: 1.5rem;
     filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.6));
+}
+
+.pricing-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text-bright);
+    font-family: var(--font-heading);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .pack-name {
