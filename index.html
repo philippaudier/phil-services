@@ -16,11 +16,11 @@
         content="Donnez vie à vos projets avec un site web à votre image. Design premium et performance garantis.">
     <meta property="og:type" content="website">
 
-    <!-- Fonts -->
+    <!-- Premium Fonts - Cormorant Garamond + Crimson Pro + Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=DM+Sans:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Crimson+Pro:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- CSS -->
@@ -32,7 +32,7 @@
     <nav id="navbar">
         <div class="container nav-content">
             <a href="#" class="logo">
-                <span>✨</span> Phil Services
+                <span>◆</span> Phil Services
             </a>
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
@@ -56,7 +56,7 @@
                     propulser votre activité en ligne. Que vous soyez un artiste ou un professionnel, je donne vie à
                     votre vision avec un accompagnement 100% personnalisé.</p>
                 <div class="hero-btns reveal">
-                    <a href="#tarifs" class="cta-button">Voir mes packs</a>
+                    <a href="#tarifs" class="cta-button">Découvrir mes packs</a>
                 </div>
             </div>
         </div>
@@ -64,11 +64,11 @@
 
     <section id="about" style="background: var(--bg-main);">
         <div class="container reveal">
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem;">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
                 <img src="assets/phildraw.png" alt="Philippe Audier"
-                    style="border-radius: 50%; width: 180px; height: 180px; object-fit: cover; border: 4px solid var(--color-primary); box-shadow: var(--shadow-premium);">
-                <h2>À propos de moi</h2>
-                <p style="max-width: 700px; line-height: 1.8;">
+                    style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border: 3px solid var(--gold-soft); box-shadow: var(--shadow-premium);">
+                <h2 style="font-size: 3rem;">À propos de moi</h2>
+                <p style="max-width: 750px; line-height: 1.9; font-size: 1.15rem; color: var(--text-cream);">
                     Bonjour, je suis Philippe Audier, développeur web freelance passionné par la création de sites
                     internet qui ont du sens. Mon objectif est de vous offrir une présence en ligne unique, performante
                     et facile à gérer. Fort d'une expérience solide en développement et en design, je mets mon expertise
@@ -82,31 +82,43 @@
 
     <section id="services">
         <div class="container">
-            <h2 class="reveal">Pourquoi me choisir ?</h2>
+            <h2 class="reveal" style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">Pourquoi me choisir ?
+            </h2>
+            <p class="reveal"
+                style="text-align: center; color: var(--text-dim); margin-bottom: 4rem; font-size: 1.1rem;">
+                Un savoir-faire unique au service de votre réussite digitale
+            </p>
             <div class="pricing-grid">
                 <div class="pricing-card reveal">
                     <div class="card-icon">⚡</div>
-                    <h3>Performance</h3>
-                    <p>Je développe des sites ultra-rapides qui respectent les standards du web moderne.</p>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Performance</h3>
+                    <p style="color: var(--text-cream); line-height: 1.8;">Je développe des sites ultra-rapides qui
+                        respectent les standards du web moderne et garantissent une expérience utilisateur fluide.</p>
                 </div>
                 <div class="pricing-card reveal">
                     <div class="card-icon">🎨</div>
-                    <h3>Design Premium</h3>
-                    <p>Une esthétique soignée et une expérience utilisateur irréprochable, conçue par mes soins.</p>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Design Premium</h3>
+                    <p style="color: var(--text-cream); line-height: 1.8;">Une esthétique soignée et une expérience
+                        utilisateur irréprochable, conçue par mes soins avec attention aux détails.</p>
                 </div>
                 <div class="pricing-card reveal">
-                    <div class="card-icon">🔍</div>
-                    <h3>Accompagnement</h3>
-                    <p>Vous n'êtes pas un numéro. Je vous accompagne de A à Z pour que votre site vous ressemble
-                        vraiment.</p>
+                    <div class="card-icon">🔒</div>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Accompagnement</h3>
+                    <p style="color: var(--text-cream); line-height: 1.8;">Vous n'êtes pas un numéro. Je vous accompagne
+                        de A à Z pour que votre site vous ressemble vraiment.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="tarifs">
+    <section id="tarifs" style="background: var(--bg-secondary);">
         <div class="container">
-            <h2 class="reveal" style="text-align: center; margin-bottom: 3rem;">Mes Packs de Création</h2>
+            <h2 class="reveal" style="text-align: center; margin-bottom: 1rem; font-size: 3rem;">Mes Packs de Création
+            </h2>
+            <p class="reveal"
+                style="text-align: center; color: var(--text-dim); margin-bottom: 4rem; font-size: 1.1rem;">
+                Des solutions adaptées à chaque besoin, de l'essentiel au premium
+            </p>
             <div class="pricing-grid">
                 <!-- Pack Découverte -->
                 <article class="pricing-card reveal">
@@ -135,6 +147,7 @@
                         <li>Textes & Images optimisés</li>
                         <li>Titres Google personnalisés</li>
                         <li>Indexation moteur de recherche</li>
+                        <li>Analyse de performance</li>
                     </ul>
                     <a href="#contact" class="cta-button">Plus populaire</a>
                 </article>
@@ -160,8 +173,9 @@
 
     <section id="contact">
         <div class="container reveal">
-            <h2 style="text-align: center; margin-bottom: 1rem;">Demander un devis gratuit</h2>
-            <p style="text-align: center; color: var(--color-text-dim); margin-bottom: 3rem;">Réponse rapide garantie
+            <h2 style="text-align: center; margin-bottom: 1rem; font-size: 3rem;">Demander un devis gratuit</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 4rem; font-size: 1.1rem;">Réponse
+                rapide garantie
                 sous 24h à 48h.</p>
 
             <div class="contact-wrapper">
@@ -206,8 +220,9 @@
     <footer>
         <div class="container footer-content">
             <h2 class="reveal">Phil Services</h2>
-            <p class="reveal">Création de sites web simples, efficaces et humains ✨</p>
-            <div style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 2rem; color: var(--text-dim);">
+            <p class="reveal">Création de sites web simples, efficaces et humains ◆</p>
+            <div
+                style="margin: 2rem 0; display: flex; justify-content: center; gap: 3rem; color: var(--text-cream); flex-wrap: wrap;">
                 <span>📧 contact@phil-services.fr</span>
                 <span>📞 06 70 62 22 58</span>
             </div>
