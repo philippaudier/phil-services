@@ -1278,72 +1278,88 @@ footer::before {
 
 .portfolio-tile {
     position: relative;
-    height: 500px;
-    border-radius: 20px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
+    border-radius: 24px;
+    overflow: hidden;
     transition: var(--transition-bounce);
     cursor: pointer;
 }
 
-.tile-image {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    filter: brightness(0.7) contrast(1.1);
+.portfolio-tile:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 217, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 217, 255, 0.1);
 }
 
-.portfolio-tile:hover .tile-image {
-    transform: scale(1.1);
-    filter: brightness(0.9) contrast(1.2);
+/* Logo Section - White Background */
+.tile-logo {
+    background: white;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.tile-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10, 14, 39, 0.9) 0%, transparent 60%);
-    padding: 2.5rem;
+.tile-logo img {
+    max-width: 200px;
+    max-height: 140px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-tile:hover .tile-logo img {
+    transform: scale(1.05);
+}
+
+/* Content Section */
+.tile-content {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    gap: 1.5rem;
-    z-index: 2;
+    gap: 0.75rem;
+    flex: 1;
 }
 
 .tile-tag {
     font-family: var(--font-heading);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: var(--cyan);
     letter-spacing: 2px;
     background: rgba(0, 217, 255, 0.1);
-    padding: 4px 12px;
+    padding: 6px 12px;
     border-radius: 4px;
     border: 1px solid rgba(0, 217, 255, 0.2);
+    width: fit-content;
 }
 
-.tile-header h3 {
-    font-size: 1.8rem;
-    margin-top: 0.5rem;
+.tile-content h3 {
+    font-size: 1.6rem;
     color: var(--text-bright);
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    line-height: 1.2;
 }
 
-.tile-details p {
-    font-size: 0.95rem;
+.tile-content p {
+    font-size: 0.9rem;
     color: var(--text-main);
-    opacity: 0.8;
+    opacity: 0.7;
     line-height: 1.6;
+    margin: 0;
+    flex: 1;
 }
 
 .tile-stats {
     display: flex;
     gap: 1.5rem;
-    margin-top: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
     font-family: var(--font-accent);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--cyan-soft);
 }
 
@@ -1353,22 +1369,25 @@ footer::before {
     gap: 6px;
 }
 
+/* Footer Section */
 .tile-footer {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: var(--transition-smooth);
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.2);
 }
 
-.portfolio-tile:hover .tile-footer {
-    opacity: 1;
-    transform: translateY(0);
+.tile-footer .cta-button.mini {
+    width: 100%;
+    text-align: center;
+    display: block;
 }
 
+/* Quantum Border */
 .quantum-border {
     position: absolute;
     inset: 0;
     border: 2px solid transparent;
-    border-radius: 20px;
+    border-radius: 24px;
     z-index: 3;
     pointer-events: none;
     transition: 0.3s;
@@ -1376,7 +1395,7 @@ footer::before {
 
 .portfolio-tile:hover .quantum-border {
     border-color: var(--cyan);
-    box-shadow: inset 0 0 20px rgba(0, 217, 255, 0.2), 0 0 30px rgba(0, 217, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(0, 217, 255, 0.15), 0 0 30px rgba(0, 217, 255, 0.1);
 }
 
 .cta-button.mini {
@@ -1573,50 +1592,23 @@ body.menu-open {
 }
 
 /* ═══════════════════════════════════════════
-   BLUR TRANSITION EFFECT
+   OVERLAY TRANSITION EFFECT
    ═══════════════════════════════════════════ */
-
-/* Blur out animation on main site */
-body.transitioning-out {
-    overflow: hidden;
-}
-
-body.transitioning-out>header,
-body.transitioning-out>main,
-body.transitioning-out>footer,
-body.transitioning-out>.starfield-container,
-body.transitioning-out>#starfield-canvas {
-    animation: blur-out 0.5s ease-out forwards;
-}
-
-@keyframes blur-out {
-    0% {
-        filter: blur(0);
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    100% {
-        filter: blur(20px);
-        opacity: 0.3;
-        transform: scale(1.02);
-    }
-}
 
 /* Transition overlay with spinner */
 .quantum-morph-overlay {
     position: fixed;
     inset: 0;
-    background: transparent;
+    background: rgba(10, 14, 39, 0.98);
     z-index: 100000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 
 .quantum-morph-overlay.active {
@@ -1626,8 +1618,8 @@ body.transitioning-out>#starfield-canvas {
 
 /* Spinner */
 .transition-spinner {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: 2px solid rgba(0, 217, 255, 0.15);
     border-top-color: var(--cyan);
     border-radius: 50%;
@@ -1643,19 +1635,19 @@ body.transitioning-out>#starfield-canvas {
 /* Destination label */
 .flip-destination {
     font-family: var(--font-accent);
-    font-size: 1rem;
-    letter-spacing: 6px;
-    color: var(--cyan);
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    color: white;
     text-transform: uppercase;
-    text-shadow: 0 0 20px var(--cyan);
+    text-shadow: 0 0 30px var(--cyan);
 }
 
 /* Status text */
 .flip-status {
     font-family: var(--font-accent);
-    font-size: 0.55rem;
-    letter-spacing: 3px;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: rgba(0, 217, 255, 0.6);
     text-transform: uppercase;
 }
 

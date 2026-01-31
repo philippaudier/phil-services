@@ -259,13 +259,13 @@ const initHUD = () => {
     window.addEventListener('scroll', updateHUD);
     updateHUD();
 
-    // Blur Transition Effect
+    // Overlay Transition Effect
     const transitionOverlay = document.createElement('div');
     transitionOverlay.className = 'quantum-morph-overlay';
     transitionOverlay.innerHTML = `
         <div class="transition-spinner"></div>
         <span class="flip-destination"></span>
-        <span class="flip-status">CONNEXION EN COURS</span>
+        <span class="flip-status">CHARGEMENT EN COURS</span>
     `;
     document.body.appendChild(transitionOverlay);
 
@@ -278,18 +278,13 @@ const initHUD = () => {
             // Set destination name
             transitionOverlay.querySelector('.flip-destination').textContent = projectName;
 
-            // Start blur animation
-            document.body.classList.add('transitioning-out');
+            // Show overlay immediately
+            transitionOverlay.classList.add('active');
 
-            // Show overlay with spinner
-            setTimeout(() => {
-                transitionOverlay.classList.add('active');
-            }, 200);
-
-            // Navigate after blur completes
+            // Navigate after overlay is visible
             setTimeout(() => {
                 window.location.href = targetUrl;
-            }, 700);
+            }, 600);
         });
     });
 };
