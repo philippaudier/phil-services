@@ -128,11 +128,45 @@
                 <div class="contact-block">
                     <h3>Configurer Votre Pièce</h3>
                     <p>Nos maîtres horlogers vous accompagnent dans la création de votre garde-temps unique.</p>
-                    <button class="cta-gold">PRENDRE RENDEZ-VOUS</button>
+                    <button class="cta-gold trigger-appointment">PRENDRE RENDEZ-VOUS</button>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Appointment Modal -->
+    <div class="appointment-modal" id="appointmentModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <span class="eyebrow">RÉSERVEZ VOTRE EXPÉRIENCE</span>
+            <h2>Configuration <br> Privée</h2>
+            <form class="appointment-form">
+                <div class="form-group">
+                    <label>NOM COMPLET</label>
+                    <input type="text" placeholder="Janus Apex" required>
+                </div>
+                <div class="form-group">
+                    <label>EMAIL DE CONTACT</label>
+                    <input type="email" placeholder="contact@apex.com" required>
+                </div>
+                <div class="form-group">
+                    <label>MODÈLE D'INTÉRÊT</label>
+                    <select>
+                        <option>Elysium Noir</option>
+                        <option>Elysium Blanc</option>
+                        <option>Elysium Azur</option>
+                        <option>Pièce sur Mesure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>MESSAGE (OPTIONNEL)</label>
+                    <textarea placeholder="Décrivez votre vision..."></textarea>
+                </div>
+                <button type="submit" class="cta-gold">SOUMETTRE LA DEMANDE</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

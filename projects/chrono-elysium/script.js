@@ -28,6 +28,31 @@ window.addEventListener('wheel', (e) => {
     if (gear2) gear2.style.transform = `rotate(${-scrollPos * 0.2}deg)`;
 });
 
+// Appointment Modal Logic
+const modal = document.getElementById('appointmentModal');
+const openBtn = document.querySelector('.trigger-appointment');
+const closeBtn = document.querySelector('.close-modal');
+const backdrop = document.querySelector('.modal-backdrop');
+
+if (openBtn && modal) {
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+    });
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+}
+
+if (backdrop) {
+    backdrop.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+}
+
 if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
