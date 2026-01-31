@@ -78,7 +78,7 @@ header {
 }
 
 .strata {
-    height: 100vh;
+    min-height: 100vh;
     scroll-snap-align: start;
     display: flex;
     align-items: center;

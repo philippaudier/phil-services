@@ -15,10 +15,19 @@ document.querySelectorAll('a, button, .watch-card').forEach(el => {
 });
 
 let scrollPos = 0;
-const maxScroll = window.innerWidth * 2;
+const panels = document.querySelectorAll('.panel');
+let maxScroll = (panels.length - 1) * window.innerWidth;
+
+window.addEventListener('resize', () => {
+    maxScroll = (panels.length - 1) * window.innerWidth;
+    scrollPos = Math.min(scrollPos, maxScroll);
+    container.style.transform = `translateX(-${scrollPos}px)`;
+});
 
 window.addEventListener('wheel', (e) => {
-    scrollPos += e.deltaY;
+    // Speed up scroll on wider screens to normalize feel
+    const speedFactor = window.innerWidth > 2000 ? 1.5 : 1;
+    scrollPos += e.deltaY * speedFactor;
     scrollPos = Math.max(0, Math.min(scrollPos, maxScroll));
 
     container.style.transform = `translateX(-${scrollPos}px)`;
@@ -45,9 +54,36 @@ const form = document.querySelector('.appointment-form');
 if (form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Demande de réservation reçue !');
-        modal.classList.remove('active');
+
+        // Hide form and header
+        form.style.display = 'none';
+        modal.querySelector('h2').style.display = 'none';
+        modal.querySelector('.eyebrow').style.display = 'none';
+
+        // Show success
+        const successMsg = modal.querySelector('.success-message');
+        successMsg.style.display = 'block';
+
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     });
+
+    // Close success button
+    const successClose = document.querySelector('.close-success');
+    if (successClose) {
+        successClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            // Reset form after delay
+            setTimeout(() => {
+                form.style.display = 'flex';
+                form.reset();
+                modal.querySelector('h2').style.display = 'block';
+                modal.querySelector('.eyebrow').style.display = 'block';
+                modal.querySelector('.success-message').style.display = 'none';
+            }, 500);
+        });
+    }
 }
 
 if (closeBtn) {
