@@ -333,11 +333,17 @@ body {
 }
 
 main,
-section,
 .container {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
+}
+
+section {
+    max-width: 100%;
+    position: relative;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 h1,
@@ -867,6 +873,7 @@ section {
     font-family: var(--font-accent);
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     box-shadow: var(--shadow-neon);
 }
@@ -949,6 +956,7 @@ section {
     align-items: stretch;
     /* Ensures all cards in a row have equal height */
     margin-top: 4rem;
+    padding: 2rem;
 }
 
 .pricing-card {
@@ -961,7 +969,6 @@ section {
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-premium);
-    overflow: hidden;
     will-change: transform;
 }
 
