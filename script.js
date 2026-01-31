@@ -259,21 +259,15 @@ const initHUD = () => {
     window.addEventListener('scroll', updateHUD);
     updateHUD();
 
-    // 3D Flip Page Transition
-    // Wrap main content for flip effect
-    const mainContent = document.querySelector('main') || document.body.firstElementChild;
-
-    // Create flip overlay (shown during transition)
-    const flipOverlay = document.createElement('div');
-    flipOverlay.className = 'quantum-morph-overlay';
-    flipOverlay.innerHTML = `
+    // Blur Transition Effect
+    const transitionOverlay = document.createElement('div');
+    transitionOverlay.className = 'quantum-morph-overlay';
+    transitionOverlay.innerHTML = `
+        <div class="transition-spinner"></div>
         <span class="flip-destination"></span>
-        <span class="flip-status">TRANSFERT EN COURS</span>
-        <div class="flip-progress">
-            <div class="flip-progress-bar"></div>
-        </div>
+        <span class="flip-status">CONNEXION EN COURS</span>
     `;
-    document.body.appendChild(flipOverlay);
+    document.body.appendChild(transitionOverlay);
 
     document.querySelectorAll('.project-link').forEach(link => {
         link.addEventListener('click', function (e) {
@@ -282,20 +276,20 @@ const initHUD = () => {
             const projectName = this.closest('.portfolio-tile')?.dataset.project || 'Projet';
 
             // Set destination name
-            flipOverlay.querySelector('.flip-destination').textContent = projectName;
+            transitionOverlay.querySelector('.flip-destination').textContent = projectName;
 
-            // Start 3D flip animation
-            document.body.classList.add('flipping-out');
+            // Start blur animation
+            document.body.classList.add('transitioning-out');
 
-            // Show overlay midway through flip
+            // Show overlay with spinner
             setTimeout(() => {
-                flipOverlay.classList.add('active');
-            }, 300);
+                transitionOverlay.classList.add('active');
+            }, 200);
 
-            // Navigate after animation
+            // Navigate after blur completes
             setTimeout(() => {
                 window.location.href = targetUrl;
-            }, 900);
+            }, 700);
         });
     });
 };
