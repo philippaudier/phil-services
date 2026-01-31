@@ -1,3 +1,11 @@
+// Handle browser back/forward navigation - hide transition mask
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        const mask = document.querySelector('.transition-mask');
+        if (mask) mask.style.display = 'none';
+    }
+});
+
 // Parallax is now handled via CSS (perspective + translateZ)
 // No JS scroll handler needed for starfield
 

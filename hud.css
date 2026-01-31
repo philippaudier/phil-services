@@ -6,7 +6,7 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 1001;
     padding: 2.5rem;
     display: block;
     overflow: hidden;
@@ -120,12 +120,12 @@
 /* Stage 4: Top Status Bar */
 .hud-status-bar {
     position: absolute;
-    top: 5.5rem;
+    top: 4rem;
     left: 50%;
     transform: translateX(-50%) translateY(-20px);
-    width: min(800px, 70%);
-    height: 35px;
-    background: rgba(5, 5, 20, 0.6);
+    width: min(700px, 60%);
+    height: 30px;
+    background: rgba(5, 5, 20, 0.8);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(0, 217, 255, 0.3);
     border-bottom: 1px solid rgba(0, 217, 255, 0.3);
@@ -154,7 +154,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 4rem;
+    padding: 0 2rem;
 }
 
 .status-node {

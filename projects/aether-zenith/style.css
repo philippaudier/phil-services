@@ -13,6 +13,18 @@
     box-sizing: border-box;
 }
 
+/* Disable selection on touch devices */
+@media (pointer: coarse) {
+    body {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
 body {
     background: var(--space);
     color: var(--silver);
@@ -438,6 +450,32 @@ p {
 /* Responsive */
 /* ══════ TABLET LANDSCAPE (1024px) ══════ */
 @media (max-width: 1024px) {
+    /* Fix scroll - let body handle scrolling, not depth-container */
+    html {
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        height: auto;
+    }
+
+    body {
+        overflow-y: visible !important;
+        overflow-x: hidden;
+        height: auto;
+        min-height: 100%;
+    }
+
+    .depth-container {
+        height: auto;
+        overflow: visible !important;
+        scroll-snap-type: none;
+        perspective: none;
+    }
+
+    .project-page {
+        overflow: visible !important;
+        height: auto;
+    }
+
     .strata {
         flex-direction: column;
         justify-content: center;
@@ -445,7 +483,9 @@ p {
         text-align: center;
         padding: 8rem 5vw 3rem;
         min-height: 100vh;
+        min-height: 100svh;
         gap: 3rem;
+        scroll-snap-align: none;
     }
 
     .content {

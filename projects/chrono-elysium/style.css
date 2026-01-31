@@ -14,6 +14,25 @@
     box-sizing: border-box;
 }
 
+/* Disable selection on touch devices */
+@media (pointer: coarse) {
+    body {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Hide cursor on touch-only devices */
+@media (hover: none) {
+    .cursor {
+        display: none;
+    }
+}
+
 body {
     background: var(--obsidian);
     color: var(--ivory);
@@ -28,15 +47,6 @@ body {
     overflow-x: hidden;
 }
 
-body,
-a,
-button,
-input,
-select,
-textarea,
-label {
-    cursor: none !important;
-}
 
 body::after {
     content: "";
@@ -106,6 +116,7 @@ header {
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: clamp(4rem, 8vh, 8rem) clamp(4vw, 8vw, 10vw);
     position: relative;
     overflow: hidden;
@@ -246,14 +257,29 @@ p {
     color: var(--obsidian);
 }
 
-.feature-placeholder {
+.feature-image-container {
     width: 100%;
+    max-width: 500px;
     height: 300px;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 10px;
     margin-top: 2rem;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.feature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-image-container:hover .feature-image,
+.feature-image-container:active .feature-image {
+    transform: scale(1.15);
 }
 
 /* Gallery Section */
@@ -296,28 +322,27 @@ p {
     opacity: 1;
 }
 
-.watch-visual {
+.watch-visual-container {
     width: 100%;
     height: 220px;
     margin-bottom: 2rem;
     border-radius: 10px;
-    transition: 0.4s;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
-.watch-visual.noir {
-    background: linear-gradient(135deg, #222 0%, #111 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.watch-visual {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.watch-visual.blanc {
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-}
-
-.watch-visual.azur {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+.watch-card:hover .watch-visual,
+.watch-card:active .watch-visual {
+    transform: scale(1.18);
 }
 
 .watch-card h3 {
@@ -528,13 +553,16 @@ p {
         width: 100vw;
         height: auto;
         transform: none !important;
+        overflow: visible !important;
     }
 
     .panel {
         width: 100vw;
         height: auto;
         min-height: 100vh;
+        min-height: 100svh;
         padding: 8rem 5vw 4rem;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -545,7 +573,16 @@ p {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         max-width: 100%;
+        text-align: center;
+    }
+
+    .panel-inner h1,
+    .panel-inner h2,
+    .panel-inner p,
+    .panel-inner .eyebrow {
+        text-align: center;
     }
 
     h1,
@@ -559,26 +596,33 @@ p {
         height: 50vh;
     }
 
-    .cursor {
-        display: none;
-    }
-
     .gear-1,
     .gear-2,
     .dial-visual {
         display: none;
     }
 
-    body {
-        overflow-y: auto !important;
-        overflow-x: hidden;
-        cursor: auto;
-        touch-action: pan-y;
-        -webkit-overflow-scrolling: touch;
-    }
-
     html {
         overflow-y: auto !important;
+        overflow-x: hidden;
+        height: auto;
+    }
+
+    body {
+        overflow-y: visible !important;
+        overflow-x: hidden;
+        cursor: auto;
+        height: auto;
+        min-height: 100%;
+    }
+
+    .project-page {
+        overflow: visible !important;
+        height: auto;
+    }
+
+    .panel {
+        overflow: visible !important;
     }
 }
 
@@ -588,10 +632,12 @@ p {
         padding: 6rem 4vw 3rem;
         text-align: center;
         align-items: center;
+        justify-content: center;
     }
 
-    .panel-content {
+    .panel-inner {
         align-items: center;
+        text-align: center;
     }
 
     h1 {
@@ -622,6 +668,9 @@ p {
         grid-template-columns: 1fr;
         gap: 2rem;
         justify-items: center;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
     .watch-card {
@@ -634,6 +683,9 @@ p {
         grid-template-columns: 1fr;
         gap: 2rem;
         justify-items: center;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
     }
 
     .spec-item {
@@ -663,15 +715,8 @@ p {
         padding: 2rem 1.5rem;
     }
 
-    /* Touch scroll */
-    body, html {
-        overflow-y: auto !important;
-        touch-action: pan-y;
-        -webkit-overflow-scrolling: touch;
-    }
 
     /* Touch interactions - replace hover */
-    .watch-card:active,
     .cta-gold:active {
         transform: scale(0.98);
         filter: brightness(1.1);
@@ -679,6 +724,19 @@ p {
 
     .watch-card {
         transition: transform 0.2s, filter 0.2s;
+    }
+
+    /* Touch zoom effect on images */
+    .watch-card:active .watch-visual,
+    .feature-image-container:active .feature-image {
+        transform: scale(1.18);
+    }
+
+    /* Responsive feature image container */
+    .feature-image-container {
+        height: 250px;
+        max-width: 100%;
+        margin: 2rem auto 0;
     }
 
     /* Show subtle glow on cards without hover */
@@ -689,6 +747,10 @@ p {
 
 /* ══════ MOBILE (480px) ══════ */
 @media (max-width: 480px) {
+    .cursor {
+        display: none;
+    }
+
     header {
         padding: 1rem 3vw;
     }
@@ -705,11 +767,17 @@ p {
 
     .panel {
         padding: 5rem 4vw 2rem;
-        min-height: auto;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .panel-inner {
         max-width: 100%;
+        text-align: center;
+        align-items: center;
     }
 
     h1 {
@@ -753,8 +821,12 @@ p {
         font-size: 1.1rem;
     }
 
-    .watch-visual {
+    .watch-visual-container {
         height: 180px;
+    }
+
+    .feature-image-container {
+        height: 200px;
     }
 
     .specs-list {
@@ -775,6 +847,13 @@ p {
         font-size: 0.55rem;
         width: 100%;
         max-width: 250px;
+    }
+
+    .contact-block {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .contact-block h3 {
@@ -842,6 +921,14 @@ p {
 
     .watch-card h3 {
         font-size: 1rem;
+    }
+
+    .watch-visual-container {
+        height: 150px;
+    }
+
+    .feature-image-container {
+        height: 180px;
     }
 
     .specs-list {

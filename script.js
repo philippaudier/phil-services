@@ -3,6 +3,22 @@ if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
 
+// Handle browser back/forward navigation - hide transition overlay
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        // Page was loaded from cache (back/forward navigation)
+        const overlay = document.querySelector('.quantum-morph-overlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+        // Also remove any transition masks
+        const masks = document.querySelectorAll('.transition-mask');
+        masks.forEach(mask => {
+            mask.style.display = 'none';
+        });
+    }
+});
+
 // Performance: Throttle utility
 const throttle = (fn, delay) => {
     let lastCall = 0;
