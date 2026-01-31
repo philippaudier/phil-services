@@ -333,19 +333,31 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Mobile/Tablet touch scrolling */
-@media (hover: none) {
-    html, body {
-        touch-action: pan-y;
-        -webkit-overflow-scrolling: touch;
-    }
-
+/* Mobile/Tablet touch behavior */
+@media (hover: none), (pointer: coarse) {
+    /* Disable text selection on long-press */
     * {
-        touch-action: manipulation;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    section, .container, main {
-        touch-action: pan-y;
+    /* Allow selection only on form inputs */
+    input, textarea {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+
+    /* Ensure smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+        overflow-y: auto !important;
+    }
+
+    body {
+        overflow-y: auto !important;
+        overscroll-behavior: none;
     }
 }
 
@@ -604,8 +616,8 @@ nav .cta-button,
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
     overflow-x: clip;
+    overflow-y: visible;
     padding-top: 100px;
     background: var(--gradient-void);
     max-width: 100vw;
