@@ -257,21 +257,25 @@ const initHUD = () => {
 
     window.addEventListener('scroll', updateHUD);
     updateHUD();
-};
 
-// Quantum Morphing Transition
-document.querySelectorAll('.project-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetUrl = this.getAttribute('href');
+    // Quantum Morphing Transition
+    const morphOverlay = document.createElement('div');
+    morphOverlay.className = 'quantum-morph-overlay';
+    morphOverlay.innerHTML = '<div class="morph-fragment"></div><div class="morph-flash"></div>';
+    document.body.appendChild(morphOverlay);
 
-        morphOverlay.classList.add('active');
+    document.querySelectorAll('.project-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
 
-        setTimeout(() => {
-            window.location.href = targetUrl;
-        }, 800);
+            morphOverlay.classList.add('active');
+
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
+        });
     });
-});
 };
 
 document.addEventListener('DOMContentLoaded', initHUD);
