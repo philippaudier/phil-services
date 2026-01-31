@@ -570,8 +570,15 @@ p {
     }
 
     body {
-        overflow-y: auto;
+        overflow-y: auto !important;
+        overflow-x: hidden;
         cursor: auto;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    html {
+        overflow-y: auto !important;
     }
 }
 
@@ -654,6 +661,29 @@ p {
     .modal-content {
         width: 95%;
         padding: 2rem 1.5rem;
+    }
+
+    /* Touch scroll */
+    body, html {
+        overflow-y: auto !important;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Touch interactions - replace hover */
+    .watch-card:active,
+    .cta-gold:active {
+        transform: scale(0.98);
+        filter: brightness(1.1);
+    }
+
+    .watch-card {
+        transition: transform 0.2s, filter 0.2s;
+    }
+
+    /* Show subtle glow on cards without hover */
+    .watch-card::after {
+        opacity: 0.3;
     }
 }
 
