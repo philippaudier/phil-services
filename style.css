@@ -610,6 +610,7 @@ section {
     position: relative;
     width: 220px;
     height: 220px;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
     justify-content: center;
