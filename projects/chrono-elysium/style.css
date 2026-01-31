@@ -98,7 +98,8 @@ header {
     white-space: nowrap;
 }
 
-.back-hub:hover {
+.back-hub:hover,
+.back-hub:active {
     background: var(--gold);
     color: var(--obsidian);
     border-color: var(--gold);
@@ -252,7 +253,8 @@ p {
     white-space: nowrap;
 }
 
-.cta-gold:hover {
+.cta-gold:hover,
+.cta-gold:active {
     background: var(--gold);
     color: var(--obsidian);
 }
@@ -312,13 +314,15 @@ p {
     transition: 0.6s ease;
 }
 
-.watch-card:hover {
+.watch-card:hover,
+.watch-card:active {
     border-color: var(--gold);
     transform: translateY(-15px);
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
 }
 
-.watch-card:hover::before {
+.watch-card:hover::before,
+.watch-card:active::before {
     opacity: 1;
 }
 

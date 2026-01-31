@@ -83,7 +83,8 @@ header {
     white-space: nowrap;
 }
 
-.back-hub:hover {
+.back-hub:hover,
+.back-hub:active {
     background: var(--cyan);
     color: var(--space);
     box-shadow: 0 0 20px var(--cyan);
@@ -233,7 +234,8 @@ p {
     white-space: nowrap;
 }
 
-.cta-holo:hover {
+.cta-holo:hover,
+.cta-holo:active {
     background: rgba(0, 217, 255, 0.1);
     box-shadow: 0 0 30px var(--cyan);
 }
@@ -243,7 +245,8 @@ p {
     color: rgba(0, 217, 255, 0.6);
 }
 
-.cta-holo.secondary:hover {
+.cta-holo.secondary:hover,
+.cta-holo.secondary:active {
     border-color: var(--cyan);
     color: var(--cyan);
 }
@@ -286,7 +289,8 @@ p {
     transition: 0.4s;
 }
 
-.dest-card:hover {
+.dest-card:hover,
+.dest-card:active {
     border-color: var(--cyan);
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
@@ -339,7 +343,8 @@ p {
     transition: 0.3s;
 }
 
-.amenity:hover {
+.amenity:hover,
+.amenity:active {
     background: rgba(0, 217, 255, 0.05);
     padding-left: 2rem;
 }

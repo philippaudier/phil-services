@@ -85,7 +85,8 @@ header {
     transition: 0.3s;
 }
 
-.back-hub:hover {
+.back-hub:hover,
+.back-hub:active {
     color: var(--emerald);
 }
 
@@ -165,7 +166,8 @@ p {
     transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bio-card:hover {
+.bio-card:hover,
+.bio-card:active {
     transform: translateY(-30px);
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05);
 }
@@ -255,7 +257,8 @@ h3 {
     position: relative;
 }
 
-.protocol-step:hover {
+.protocol-step:hover,
+.protocol-step:active {
     transform: translateY(-10px);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
 }
@@ -350,7 +353,8 @@ h3 {
     transition: 0.4s;
 }
 
-.team-member:hover {
+.team-member:hover,
+.team-member:active {
     transform: translateY(-10px);
 }
 
@@ -372,7 +376,8 @@ h3 {
     transition: transform 0.4s ease;
 }
 
-.team-member:hover .member-avatar img {
+.team-member:hover .member-avatar img,
+.team-member:active .member-avatar img {
     transform: scale(1.2);
 }
 
@@ -440,7 +445,8 @@ h3 {
     transition: 0.3s;
 }
 
-.cta-green:hover {
+.cta-green:hover,
+.cta-green:active {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
 }
@@ -459,7 +465,8 @@ h3 {
     transition: 0.3s;
 }
 
-.cta-outline:hover {
+.cta-outline:hover,
+.cta-outline:active {
     border-color: var(--emerald);
     color: var(--emerald);
 }
