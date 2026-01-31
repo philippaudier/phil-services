@@ -54,6 +54,7 @@ window.addEventListener('scroll', scrollReveal);
 // Trigger on load
 document.addEventListener('DOMContentLoaded', () => {
     scrollReveal();
+    if (typeof initHUD === 'function') initHUD();
 });
 
 // Sync Pricing Selection with Form
@@ -276,11 +277,6 @@ const initHUD = () => {
             }, 800);
         });
     });
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    initHUD();
-    scrollReveal();
 });
-
-window.addEventListener('scroll', scrollReveal);
+    });
+};
