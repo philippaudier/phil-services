@@ -89,9 +89,8 @@ header {
 .depth-container::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: -50%;
-    width: 200%;
+    inset: 0;
+    width: 100vw;
     height: 100vh;
     background-image:
         linear-gradient(rgba(0, 217, 255, 0.06) 1px, transparent 1px),
