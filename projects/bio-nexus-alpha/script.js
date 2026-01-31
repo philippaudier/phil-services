@@ -20,6 +20,15 @@ if (openBtn && modal) {
     });
 }
 
+const form = document.querySelector('.appointment-form');
+if (form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Analyse ADN et réservation enregistrées !');
+        modal.classList.remove('active');
+    });
+}
+
 if (closeBtn) {
     closeBtn.addEventListener('click', () => {
         modal.classList.remove('active');

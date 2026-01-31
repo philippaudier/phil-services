@@ -41,6 +41,15 @@ if (openBtn && modal) {
     });
 }
 
+const form = document.querySelector('.appointment-form');
+if (form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Demande de réservation reçue !');
+        modal.classList.remove('active');
+    });
+}
+
 if (closeBtn) {
     closeBtn.addEventListener('click', () => {
         modal.classList.remove('active');
