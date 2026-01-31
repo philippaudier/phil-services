@@ -23,6 +23,7 @@
     --cyan-soft: #4dd0e1;
     --cyan-dim: rgba(0, 217, 255, 0.15);
     --purple-neon: #bf40bf;
+    --red-neon: #ff3131;
     --orange-glow: #ff6b35;
 
     /* Text */
@@ -200,6 +201,43 @@
         clip-path: inset(40% 0 40% 0);
         transform: translate(-2px, 0);
     }
+}
+
+/* Quantum Guardian Validation Styles */
+.input-invalid {
+    border-color: var(--red-neon) !important;
+    background: rgba(255, 49, 49, 0.05) !important;
+    box-shadow: 0 0 20px rgba(255, 49, 49, 0.4), inset 0 0 10px rgba(255, 49, 49, 0.1) !important;
+    animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.form-group.invalid label {
+    color: var(--red-neon);
+    text-shadow: 0 0 10px rgba(255, 49, 49, 0.5);
 }
 
 * {
@@ -1285,24 +1323,37 @@ body.menu-open {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
-        max-width: 350px;
+        width: 85%;
+        max-width: 400px;
         height: 100vh;
-        background: rgba(5, 5, 20, 0.98);
-        backdrop-filter: blur(20px);
+        background: rgba(10, 14, 39, 0.9);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 3rem;
-        transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-        border-left: 2px solid var(--cyan-soft);
-        z-index: 1000;
+        transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        border-left: 1px solid rgba(0, 217, 255, 0.3);
+        z-index: 2000;
         display: flex;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links::before {
+        content: 'COMMAND CENTER';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        color: var(--cyan);
+        letter-spacing: 2px;
+        opacity: 0.5;
     }
 
     .nav-links.active {
         right: 0;
-        box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
     }
 
     .mobile-menu-btn {
@@ -1317,6 +1368,15 @@ body.menu-open {
 
     .pricing-card.featured:hover {
         transform: translateY(-15px) scale(1);
+    }
+
+    /* Premium Touch Interactions */
+    .cta-button:active,
+    .submit-btn:active {
+        transform: scale(0.95);
+        filter: brightness(1.2);
+        box-shadow: 0 0 30px var(--cyan);
+        transition: 0.1s;
     }
 
     .quote-form {

@@ -25,6 +25,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hud.css">
 </head>
 
 <body>
@@ -58,6 +59,34 @@
     </svg>
 
     <canvas id="starfield"></canvas>
+
+    <!-- Global Spaceship HUD Progression Overlay -->
+    <div id="spaceship-hud" class="hud-overlay" aria-hidden="true">
+        <!-- Stage 2: Bio-Sync Scanners -->
+        <div class="hud-scanner left">
+            <div class="scanner-line"></div>
+            <div class="scanner-data">SYNCING...</div>
+        </div>
+        <div class="hud-scanner right">
+            <div class="scanner-line"></div>
+            <div class="scanner-data">BIO-ID: OK</div>
+        </div>
+
+        <!-- Stage 3: System Grids -->
+        <div class="hud-grid bottom-left"></div>
+        <div class="hud-grid bottom-right"></div>
+
+        <!-- Stage 4: Top Status Bar -->
+        <div class="hud-status-bar">
+            <div class="status-inner">
+                <span class="status-node">COORDS: 48.85 / 2.35</span>
+                <div class="status-power-meter">
+                    <div class="power-level"></div>
+                </div>
+                <div class="status-node hud-quantum-pulse"></div>
+            </div>
+        </div>
+    </div>
 
     <nav id="navbar">
         <div class="container nav-content">
@@ -232,7 +261,8 @@
                 </div>
 
                 <div class="quote-form-card">
-                    <form id="quote-form" action="https://formspree.io/f/xykjleza" method="POST" class="quote-form">
+                    <form id="quote-form" action="https://formspree.io/f/xykjleza" method="POST" class="quote-form"
+                        novalidate>
                         <div class="form-group">
                             <label for="name">Votre nom</label>
                             <input type="text" id="name" name="name" placeholder="Ex: Jean Dupont" required>

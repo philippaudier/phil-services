@@ -1,0 +1,411 @@
+/* ═══════════════════════════════════════════
+   SPACESHIP HUD PROGRESSION SYSTEM
+   ═══════════════════════════════════════════ */
+
+.hud-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    padding: 2.5rem;
+    display: block;
+    overflow: hidden;
+    contain: layout style;
+    will-change: transform;
+}
+
+/* Base styles for HUD segments */
+.hud-scanner,
+.hud-grid,
+.hud-status-bar,
+.hud-bracket,
+.hud-quantum-pulse {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+/* Stage 2: Bio-Sync Scanners */
+.hud-scanner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 2px;
+    height: 40vh;
+    background: linear-gradient(to bottom, transparent, var(--cyan), transparent);
+}
+
+.hud-scanner.left {
+    left: 2rem;
+}
+
+.hud-scanner.right {
+    right: 2rem;
+}
+
+.scanner-line {
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    background: var(--cyan);
+    box-shadow: 0 0 15px var(--cyan);
+    animation: scanner-move 4s linear infinite;
+}
+
+.hud-scanner.left .scanner-line {
+    left: 0;
+}
+
+.hud-scanner.right .scanner-line {
+    right: 0;
+}
+
+.scanner-data {
+    position: absolute;
+    top: -40px;
+    font-size: 0.65rem;
+    font-family: var(--font-accent);
+    letter-spacing: 3px;
+    color: var(--cyan);
+    white-space: nowrap;
+    text-shadow: 0 0 10px var(--cyan);
+}
+
+@keyframes scanner-move {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Stage 3: System Grids */
+.hud-grid {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(0, 217, 255, 0.08);
+    background-image:
+        linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+    background-size: 25px 25px;
+    transform: translateY(50px);
+}
+
+.hud-grid.bottom-left {
+    bottom: 0;
+    left: 0;
+    clip-path: polygon(0 100%, 0 0, 100% 100%);
+}
+
+.hud-grid.bottom-right {
+    bottom: 0;
+    right: 0;
+    clip-path: polygon(100% 100%, 100% 0, 0 100%);
+}
+
+/* Stage 4: Top Status Bar */
+.hud-status-bar {
+    position: absolute;
+    top: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    width: min(800px, 70%);
+    height: 35px;
+    background: rgba(5, 5, 20, 0.6);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 217, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+    clip-path: polygon(4% 0, 96% 0, 100% 100%, 0% 100%);
+    transition: all 0.5s ease;
+}
+
+.hud-status-bar.error {
+    border-color: var(--red-neon);
+    background: rgba(40, 5, 5, 0.7);
+    box-shadow: 0 0 30px rgba(255, 49, 49, 0.2);
+}
+
+.hud-status-bar.error .status-node {
+    color: var(--red-neon);
+    text-shadow: 0 0 15px var(--red-neon);
+}
+
+.hud-status-bar.error .power-level {
+    background: var(--red-neon);
+    box-shadow: 0 0 15px var(--red-neon);
+}
+
+.status-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 4rem;
+}
+
+.status-node {
+    font-size: 0.7rem;
+    font-family: var(--font-accent);
+    color: var(--cyan);
+    letter-spacing: 1px;
+}
+
+.status-power-meter {
+    flex-grow: 1;
+    margin: 0 3rem;
+    height: 2px;
+    background: rgba(0, 217, 255, 0.1);
+    position: relative;
+}
+
+.power-level {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 85%;
+    background: var(--cyan);
+    box-shadow: 0 0 15px var(--cyan);
+}
+
+/* Stage 5: Mission Brackets */
+.hud-bracket {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(0, 217, 255, 0.4);
+    transform: scale(1.2);
+}
+
+.hud-bracket.top-left {
+    top: 2rem;
+    left: 2rem;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.hud-bracket.top-right {
+    top: 2rem;
+    right: 2rem;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.hud-bracket.bottom-left {
+    bottom: 2rem;
+    left: 2rem;
+    border-right: 0;
+    border-top: 0;
+}
+
+.hud-bracket.bottom-right {
+    bottom: 2rem;
+    right: 2rem;
+    border-left: 0;
+    border-top: 0;
+}
+
+
+/* Stage 5: Quantum Pulse Ripple (Digital Wave) */
+.hud-quantum-pulse {
+    width: 24px;
+    height: 24px;
+    background: var(--cyan);
+    border-radius: 50%;
+    position: relative;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.hud-quantum-pulse.active {
+    opacity: 1;
+    box-shadow: 0 0 30px var(--cyan);
+}
+
+.hud-quantum-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.hud-quantum-pulse.active::after {
+    animation: ripple-out-heavy 1.5s infinite var(--ease-primary);
+}
+
+@keyframes ripple-out-heavy {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Global HUD Wave Flash */
+.hud-flash-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 217, 255, 0.1), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
+}
+
+.hud-flash-active {
+    opacity: 1;
+}
+
+/* Rapid Section Tearing Effect */
+.section-glitch-active {
+    animation: global-tear 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    position: relative;
+}
+
+.section-glitch-active::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(transparent 0%,
+            rgba(0, 217, 255, 0.1) 0.5%,
+            transparent 1%);
+    background-size: 100% 200%;
+    animation: scan-bands 0.4s linear infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes global-tear {
+    0% {
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+    }
+
+    15% {
+        clip-path: inset(20% 0 10% 0);
+        transform: translateX(-10px);
+    }
+
+    30% {
+        clip-path: inset(45% 0 35% 0);
+        transform: translateX(10px);
+    }
+
+    45% {
+        clip-path: inset(5% 0 85% 0);
+        transform: translateX(-5px);
+    }
+
+    60% {
+        clip-path: inset(60% 0 5% 0);
+        transform: translateX(5px);
+    }
+
+    75% {
+        clip-path: inset(25% 0 65% 0);
+        transform: translateX(-2px);
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes scan-bands {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* Peripheral Mobile HUD Optimization (Horizon) */
+@media (max-width: 1024px) {
+
+    .hud-scanner,
+    .hud-grid,
+    .hud-status-bar {
+        display: none !important;
+    }
+
+    .hud-overlay {
+        display: block;
+        /* Show HUD container */
+        border: none;
+    }
+
+    /* Keep brackets only - adjusted for mobile */
+    .hud-bracket {
+        width: 40px;
+        height: 40px;
+        border-width: 1px;
+        opacity: 0.3 !important;
+        /* Force visibility when threshold met */
+    }
+
+    .bracket-tl {
+        top: 15px;
+        left: 15px;
+        border-left: 2px solid var(--cyan);
+        border-top: 2px solid var(--cyan);
+    }
+
+    .bracket-tr {
+        top: 15px;
+        right: 15px;
+        border-right: 2px solid var(--cyan);
+        border-top: 2px solid var(--cyan);
+    }
+
+    .bracket-bl {
+        bottom: 15px;
+        left: 15px;
+        border-left: 2px solid var(--cyan);
+        border-bottom: 2px solid var(--cyan);
+    }
+
+    .bracket-br {
+        bottom: 15px;
+        right: 15px;
+        border-right: 2px solid var(--cyan);
+        border-bottom: 2px solid var(--cyan);
+    }
+
+    /* Mobile Scan Line (Top) */
+    .hud-overlay::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--cyan);
+        box-shadow: 0 0 10px var(--cyan);
+        z-index: 10000;
+        transform: scaleX(calc(var(--scroll-percent, 0) / 100));
+        transform-origin: left;
+        opacity: 0.6;
+    }
+}
