@@ -564,15 +564,20 @@ p {
     max-width: 500px;
     background: #0d0d0d;
     border: 1px solid rgba(212, 175, 55, 0.2);
-    padding: 3.5rem;
+    padding: 3rem 2.5rem;
     border-radius: 4px;
     transform: translateY(30px);
     transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
-.appointment-modal.active .modal-content {
-    transform: translateY(0);
+.modal-content h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-top: 0.5rem;
+    color: white;
 }
 
 .close-modal {
@@ -611,13 +616,26 @@ p {
 .form-group input,
 .form-group select,
 .form-group textarea {
-    background: rgba(255, 255, 255, 0.03);
+    background: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.8rem;
     color: white;
     font-family: inherit;
     border-radius: 2px;
     transition: 0.3s;
+    appearance: none;
+}
+
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1rem) center;
+    padding-right: 2.5rem;
+}
+
+.form-group option {
+    background: #0d0d0d;
+    color: white;
 }
 
 .form-group input:focus,
@@ -625,7 +643,7 @@ p {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--gold);
-    background: rgba(255, 255, 255, 0.05);
+    background: #222;
 }
 
 .form-group textarea {
@@ -637,4 +655,15 @@ p {
     width: 100%;
     margin-top: 1rem;
     padding: 1.2rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.appointment-form .cta-gold:hover {
+    background: var(--gold);
+    color: #0d0d0d;
 }
