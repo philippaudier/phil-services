@@ -189,3 +189,235 @@ p {
     background: rgba(0, 217, 255, 0.1);
     box-shadow: 0 0 30px var(--cyan);
 }
+
+.cta-holo.secondary {
+    border-color: rgba(0, 217, 255, 0.3);
+    color: rgba(0, 217, 255, 0.6);
+}
+
+.cta-holo.secondary:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+/* Transition Mask */
+.transition-mask {
+    position: fixed;
+    inset: 0;
+    background: #0a0e27;
+    z-index: 9999;
+    pointer-events: none;
+    animation: mask-fade 0.8s 0.2s ease-out forwards;
+}
+
+@keyframes mask-fade {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Destinations Grid */
+.content.wide {
+    max-width: 1200px;
+}
+
+.dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.dest-card {
+    background: rgba(0, 217, 255, 0.03);
+    border: 1px solid rgba(0, 217, 255, 0.1);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.dest-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+}
+
+.dest-card.featured {
+    border-color: var(--cyan);
+    background: rgba(0, 217, 255, 0.08);
+}
+
+.dest-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.dest-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.dest-card p {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+}
+
+.dest-alt {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 2px;
+}
+
+/* Amenities */
+.amenity-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.amenity {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(0, 217, 255, 0.02);
+    border-left: 2px solid var(--cyan);
+    transition: 0.3s;
+}
+
+.amenity:hover {
+    background: rgba(0, 217, 255, 0.05);
+    padding-left: 2rem;
+}
+
+.amenity i {
+    width: 24px;
+    height: 24px;
+    color: var(--cyan);
+}
+
+.amenity span {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Launch Section */
+.content.center {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.launch-stats {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--cyan);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+/* Page Entry Animation */
+.project-page {
+    animation: page-arrive 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes page-arrive {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.content {
+    animation: content-reveal 1.2s 0.3s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes content-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Starfield */
+.starfield {
+    animation: starfield-drift 60s linear infinite;
+}
+
+@keyframes starfield-drift {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 300px 300px;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .strata {
+        flex-direction: column;
+        padding: 8rem 5vw 3rem;
+        gap: 3rem;
+    }
+
+    .visual {
+        position: relative;
+        width: 100%;
+        right: 0;
+    }
+
+    h1,
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .hud-overlay {
+        display: none;
+    }
+}

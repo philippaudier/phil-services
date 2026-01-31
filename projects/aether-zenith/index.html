@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether-Zenith | Résidences Orbitale</title>
+    <title>Aether-Zenith | Résidences Orbitales</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,7 @@
 
 <body class="project-page">
     <div class="starfield"></div>
+    <div class="transition-mask"></div>
 
     <header>
         <div class="logo">AETHER<span>ZENITH</span></div>
@@ -24,6 +25,7 @@
     </header>
 
     <main class="depth-container">
+        <!-- Section 1: Orbit Hero -->
         <section class="strata" id="orbit">
             <div class="hud-overlay">
                 <span class="alt">ALTITUDE: 420KM</span>
@@ -32,32 +34,114 @@
             <div class="content">
                 <span class="tag">DOMAINE PRIVÉ</span>
                 <h1>Votre Résidence <br> dans les Étoiles</h1>
-                <p>Découvrez l'immobilier orbital de luxe. Un sanctuaire au-delà des nuages.</p>
+                <p>Découvrez l'immobilier orbital de luxe. Un sanctuaire au-delà des nuages où le temps suspend son vol.
+                </p>
                 <div class="scroll-v">DESCENDRE <span>↓</span></div>
             </div>
         </section>
 
+        <!-- Section 2: Lounge -->
         <section class="strata" id="lounge">
             <div class="visual">
                 <img src="../../assets/aether_zenith_mockup_1769817805446.png" alt="Zenith Lounge">
                 <div class="scanline"></div>
             </div>
             <div class="content">
-                <h2>Le Zenith Lounge</h2>
-                <p>Une vue imprenable sur le berceau de l'humanité. Gravité artificielle et confort absolu.</p>
+                <span class="tag">LE ZENITH LOUNGE</span>
+                <h2>Vue sur <br> l'Humanité</h2>
+                <p>Une vue imprenable sur le berceau de l'humanité. Gravité artificielle calibrée et confort absolu à
+                    420km d'altitude.</p>
             </div>
         </section>
 
-        <section class="strata" id="launch">
+        <!-- Section 3: Destinations -->
+        <section class="strata" id="destinations">
+            <div class="content wide">
+                <span class="tag">DESTINATIONS</span>
+                <h2>Choisissez <br> Votre Orbite</h2>
+                <div class="dest-grid">
+                    <div class="dest-card">
+                        <div class="dest-icon">🌍</div>
+                        <h3>LEO Station</h3>
+                        <p>Orbite basse terrestre</p>
+                        <span class="dest-alt">420 KM</span>
+                    </div>
+                    <div class="dest-card featured">
+                        <div class="dest-icon">🌙</div>
+                        <h3>Lunar Gateway</h3>
+                        <p>Station lunaire</p>
+                        <span class="dest-alt">384,400 KM</span>
+                    </div>
+                    <div class="dest-card">
+                        <div class="dest-icon">🔴</div>
+                        <h3>Mars Transit</h3>
+                        <p>Avant-poste martien</p>
+                        <span class="dest-alt">225M KM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Amenities -->
+        <section class="strata" id="amenities">
             <div class="content">
-                <h2>Prêt pour le Décollage ?</h2>
-                <p>Prochain transfert : Mars 2026. <br> Inscriptions limitées aux membres Zenith.</p>
-                <button class="cta-holo">REJOINDRE L'ÉLITE</button>
+                <span class="tag">ÉQUIPEMENTS</span>
+                <h2>Luxe <br> Interstellaire</h2>
+                <div class="amenity-list">
+                    <div class="amenity">
+                        <i data-lucide="sun"></i>
+                        <span>Observation Deck 360°</span>
+                    </div>
+                    <div class="amenity">
+                        <i data-lucide="wind"></i>
+                        <span>Gravité Calibrée 0.8G</span>
+                    </div>
+                    <div class="amenity">
+                        <i data-lucide="shield"></i>
+                        <span>Blindage Radiation</span>
+                    </div>
+                    <div class="amenity">
+                        <i data-lucide="wifi"></i>
+                        <span>Quantum Link Terre</span>
+                    </div>
+                    <div class="amenity">
+                        <i data-lucide="utensils"></i>
+                        <span>Cuisine Gastronomique</span>
+                    </div>
+                    <div class="amenity">
+                        <i data-lucide="heart-pulse"></i>
+                        <span>Centre Médical Avancé</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Launch CTA -->
+        <section class="strata" id="launch">
+            <div class="content center">
+                <span class="tag">EMBARQUEMENT</span>
+                <h2>Prêt pour <br> le Décollage ?</h2>
+                <p>Prochain transfert : Mars 2026. <br> Inscriptions limitées aux membres Zenith Elite.</p>
+                <div class="cta-group">
+                    <button class="cta-holo">RÉSERVER MA PLACE</button>
+                    <button class="cta-holo secondary">VISITE VIRTUELLE</button>
+                </div>
+                <div class="launch-stats">
+                    <div class="stat">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Places Restantes</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">€2.5M</span>
+                        <span class="stat-label">À partir de</span>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <script src="script.js"></script>
+    <script>if (typeof lucide !== 'undefined') lucide.createIcons();</script>
 </body>
 
 </html>

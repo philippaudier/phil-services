@@ -262,7 +262,14 @@ const initHUD = () => {
     // Quantum Morphing Transition
     const morphOverlay = document.createElement('div');
     morphOverlay.className = 'quantum-morph-overlay';
-    morphOverlay.innerHTML = '<div class="morph-fragment"></div><div class="morph-flash"></div>';
+    morphOverlay.innerHTML = `
+        <div class="morph-fragment"></div>
+        <div class="morph-flash"></div>
+        <div class="morph-loader">
+            <div class="morph-spinner"></div>
+            <span class="morph-status">Initialisation Uplink...</span>
+        </div>
+    `;
     document.body.appendChild(morphOverlay);
 
     document.querySelectorAll('.project-link').forEach(link => {
