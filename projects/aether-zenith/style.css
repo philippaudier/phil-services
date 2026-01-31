@@ -88,11 +88,11 @@ header {
 
 .depth-container::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -50%;
     width: 200%;
-    height: 600vh;
+    height: 100vh;
     background-image:
         linear-gradient(rgba(0, 217, 255, 0.06) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 217, 255, 0.06) 1px, transparent 1px),
@@ -103,8 +103,6 @@ header {
     animation: starfield-drift 60s linear infinite, starfield-pulse 3s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
-    transform: translateZ(-3px) scale(2);
-    transform-origin: center top;
 }
 
 .strata {
