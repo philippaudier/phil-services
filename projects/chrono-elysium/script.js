@@ -1,23 +1,21 @@
 const cursor = document.querySelector('.cursor');
-const main = document.querySelector('.horizontal-container');
+const container = document.querySelector('.horizontal-container');
 
 document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
 });
 
-// Horizontal Scroll
-window.addEventListener('wheel', (e) => {
-    if (e.deltaY !== 0) {
-        window.scrollBy({
-            left: e.deltaY * 2,
-            behavior: 'smooth'
-        });
-        e.preventDefault();
-    }
-}, { passive: false });
+let scrollPos = 0;
+const maxScroll = window.innerWidth * 2;
 
-// Initialize Lucide
+window.addEventListener('wheel', (e) => {
+    scrollPos += e.deltaY;
+    scrollPos = Math.max(0, Math.min(scrollPos, maxScroll));
+
+    container.style.transform = `translateX(-${scrollPos}px)`;
+});
+
 if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }

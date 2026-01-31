@@ -259,4 +259,19 @@ const initHUD = () => {
     updateHUD();
 };
 
+// Quantum Morphing Transition
+document.querySelectorAll('.project-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetUrl = this.getAttribute('href');
+
+        morphOverlay.classList.add('active');
+
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 800);
+    });
+});
+};
+
 document.addEventListener('DOMContentLoaded', initHUD);

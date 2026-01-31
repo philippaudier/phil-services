@@ -30,7 +30,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100 media;
+    z-index: 1000;
 }
 
 .logo {
@@ -64,6 +64,7 @@ header {
     display: flex;
     width: 300vw;
     height: 100vh;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .panel {
@@ -129,18 +130,6 @@ p {
     border: 2px solid var(--gold);
     border-radius: 50%;
     opacity: 0.1;
-}
-
-.gear::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background: var(--gold);
-    border-radius: 50%;
 }
 
 .gear-1 {

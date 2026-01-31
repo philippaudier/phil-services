@@ -1,4 +1,3 @@
-// Parallax Starfield
 const stars = document.querySelector('.starfield');
 const main = document.querySelector('.depth-container');
 
@@ -7,7 +6,6 @@ main.addEventListener('scroll', () => {
     stars.style.transform = `translateY(${scroll * 0.5}px)`;
 });
 
-// Initialize Lucide
 if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
