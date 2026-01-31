@@ -154,12 +154,46 @@
                 <h2>Commencer <br> Votre Voyage</h2>
                 <p>Consultation initiale gratuite. Évaluation complète de votre profil génomique.</p>
                 <div class="cta-buttons">
-                    <button class="cta-green">PRENDRE RDV</button>
+                    <button class="cta-green trigger-appointment">PRENDRE RDV</button>
                     <button class="cta-outline">TÉLÉCHARGER LE RAPPORT</button>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Appointment Modal -->
+    <div class="appointment-modal" id="appointmentModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <span class="section-tag">PROTOCOLE D'ACCÈS</span>
+            <h2>Séquençage <br> Personnalisé</h2>
+            <form class="appointment-form">
+                <div class="form-group">
+                    <label>IDENTITÉ DU SUJET</label>
+                    <input type="text" placeholder="Janus Apex" required>
+                </div>
+                <div class="form-group">
+                    <label>LIEN DE TRANSMISSION (EMAIL)</label>
+                    <input type="email" placeholder="contact@apex.com" required>
+                </div>
+                <div class="form-group">
+                    <label>PROGRAMME SOUHAITÉ</label>
+                    <select>
+                        <option>Alpha-Génome (Longévité)</option>
+                        <option>Neuro-Link (Cognition)</option>
+                        <option>Soma-Repair (Régénération)</option>
+                        <option>Protocole Intégral</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>OBSERVATIONS PARTICULIÈRES</label>
+                    <textarea placeholder="Décrivez vos objectifs biologiques..."></textarea>
+                </div>
+                <button type="submit" class="cta-green">INITIER LE PROTOCOLE</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>if (typeof lucide !== 'undefined') lucide.createIcons();</script>

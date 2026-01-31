@@ -123,7 +123,7 @@
                 <h2>Prêt pour <br> le Décollage ?</h2>
                 <p>Prochain transfert : Mars 2026. <br> Inscriptions limitées aux membres Zenith Elite.</p>
                 <div class="cta-group">
-                    <button class="cta-holo">RÉSERVER MA PLACE</button>
+                    <button class="cta-holo trigger-appointment">RÉSERVER MA PLACE</button>
                     <button class="cta-holo secondary">VISITE VIRTUELLE</button>
                 </div>
                 <div class="launch-stats">
@@ -139,6 +139,40 @@
             </div>
         </section>
     </main>
+
+    <!-- Appointment Modal -->
+    <div class="appointment-modal" id="appointmentModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <span class="tag">RÉSERVEZ VOTRE ORBITE</span>
+            <h2>Configuration <br> Zenith Elite</h2>
+            <form class="appointment-form">
+                <div class="form-group">
+                    <label>NOM DU PIONNIER</label>
+                    <input type="text" placeholder="Janus Apex" required>
+                </div>
+                <div class="form-group">
+                    <label>COORDONNÉES QUANTUM (EMAIL)</label>
+                    <input type="email" placeholder="contact@apex.com" required>
+                </div>
+                <div class="form-group">
+                    <label>DESTINATION SOUHAITÉE</label>
+                    <select>
+                        <option>LEO Station - Orbite Basse</option>
+                        <option>Lunar Gateway - Lune</option>
+                        <option>Mars Transit - Avant-poste</option>
+                        <option>Station Privée Personnalisée</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>PROTOCOLE SPÉCIAL (MESSAGE)</label>
+                    <textarea placeholder="Détails de votre mission..."></textarea>
+                </div>
+                <button type="submit" class="cta-holo">CONFIRMER L'EMBARQUEMENT</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>if (typeof lucide !== 'undefined') lucide.createIcons();</script>

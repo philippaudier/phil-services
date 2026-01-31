@@ -7,6 +7,31 @@ document.addEventListener('mousemove', (e) => {
                            radial-gradient(circle at ${90 - x * 5}% ${80 - y * 5}%, rgba(16, 185, 129, 0.12) 0%, transparent 50%)`;
 });
 
+// Appointment Modal Logic
+const modal = document.getElementById('appointmentModal');
+const openBtn = document.querySelector('.trigger-appointment');
+const closeBtn = document.querySelector('.close-modal');
+const backdrop = document.querySelector('.modal-backdrop');
+
+if (openBtn && modal) {
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+    });
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+}
+
+if (backdrop) {
+    backdrop.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+}
+
 if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
