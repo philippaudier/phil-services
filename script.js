@@ -3,18 +3,32 @@ if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
 
+// Performance: Throttle utility
+const throttle = (fn, delay) => {
+    let lastCall = 0;
+    return (...args) => {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            fn(...args);
+        }
+    };
+};
+
 // Sticky Navigation
 const navbar = document.getElementById('navbar');
 const mobileToggle = document.getElementById('mobile-toggle');
 const navLinks = document.getElementById('nav-links');
 
-window.addEventListener('scroll', () => {
+const handleNavScroll = () => {
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+};
+
+window.addEventListener('scroll', throttle(handleNavScroll, 16), { passive: true });
 
 // Mobile Menu Toggle
 if (mobileToggle && navLinks) {
@@ -34,22 +48,23 @@ if (mobileToggle && navLinks) {
     });
 }
 
-// Scroll Reveal Animation
+// Scroll Reveal Animation (throttled)
 const revealElements = document.querySelectorAll('.reveal');
 
 const scrollReveal = () => {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 150;
     revealElements.forEach(element => {
-        const windowHeight = window.innerHeight;
-        const revealPoint = 150;
-        const revealTop = element.getBoundingClientRect().top;
-
-        if (revealTop < windowHeight - revealPoint) {
-            element.classList.add('active');
+        if (!element.classList.contains('active')) {
+            const revealTop = element.getBoundingClientRect().top;
+            if (revealTop < windowHeight - revealPoint) {
+                element.classList.add('active');
+            }
         }
     });
 };
 
-window.addEventListener('scroll', scrollReveal);
+window.addEventListener('scroll', throttle(scrollReveal, 50), { passive: true });
 
 // Trigger on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,12 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Sync Pricing Selection with Form
+const packMapping = {
+    'STRATO': 'decouverte',
+    'IONO': 'visibilite',
+    'EXO': 'pro'
+};
+
 document.querySelectorAll('.pricing-card .cta-button').forEach(button => {
     button.addEventListener('click', function () {
         const packValue = this.getAttribute('data-pack');
         const packSelect = document.getElementById('pack');
-        if (packValue && packSelect) {
-            packSelect.value = packValue;
+        if (packValue && packSelect && packMapping[packValue]) {
+            packSelect.value = packMapping[packValue];
         }
     });
 });
@@ -256,7 +277,7 @@ const initHUD = () => {
         }
     };
 
-    window.addEventListener('scroll', updateHUD);
+    window.addEventListener('scroll', throttle(updateHUD, 16), { passive: true });
     updateHUD();
 
     // Overlay Transition Effect

@@ -1,17 +1,37 @@
+// Performance: Throttle utility
+const throttle = (fn, delay) => {
+    let lastCall = 0;
+    return (...args) => {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            fn(...args);
+        }
+    };
+};
+
 const cursor = document.querySelector('.cursor');
 const container = document.querySelector('.horizontal-container');
 const gear1 = document.querySelector('.gear-1');
 const gear2 = document.querySelector('.gear-2');
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
+// Throttled cursor movement
+if (cursor) {
+    const updateCursor = (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    };
+    document.addEventListener('mousemove', throttle(updateCursor, 16), { passive: true });
+}
 
 // Scale cursor on interactive elements
 document.querySelectorAll('a, button, .watch-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
-    el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+    el.addEventListener('mouseenter', () => {
+        if (cursor) cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+        if (cursor) cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
 });
 
 let scrollPos = 0;
@@ -21,21 +41,23 @@ let maxScroll = (panels.length - 1) * window.innerWidth;
 window.addEventListener('resize', () => {
     maxScroll = (panels.length - 1) * window.innerWidth;
     scrollPos = Math.min(scrollPos, maxScroll);
-    container.style.transform = `translateX(-${scrollPos}px)`;
+    if (container) container.style.transform = `translateX(-${scrollPos}px)`;
 });
 
-window.addEventListener('wheel', (e) => {
-    // Speed up scroll on wider screens to normalize feel
+// Throttled wheel for horizontal scroll + gear parallax
+const handleWheel = (e) => {
     const speedFactor = window.innerWidth > 2000 ? 1.5 : 1;
     scrollPos += e.deltaY * speedFactor;
     scrollPos = Math.max(0, Math.min(scrollPos, maxScroll));
 
-    container.style.transform = `translateX(-${scrollPos}px)`;
+    if (container) container.style.transform = `translateX(-${scrollPos}px)`;
 
     // Gear Parallax
     if (gear1) gear1.style.transform = `rotate(${scrollPos * 0.1}deg)`;
     if (gear2) gear2.style.transform = `rotate(${-scrollPos * 0.2}deg)`;
-});
+};
+
+window.addEventListener('wheel', throttle(handleWheel, 16), { passive: true });
 
 // Appointment Modal Logic
 const modal = document.getElementById('appointmentModal');
@@ -57,12 +79,14 @@ if (form) {
 
         // Hide form and header
         form.style.display = 'none';
-        modal.querySelector('h2').style.display = 'none';
-        modal.querySelector('.eyebrow').style.display = 'none';
+        const h2 = modal.querySelector('h2');
+        const eyebrow = modal.querySelector('.eyebrow');
+        if (h2) h2.style.display = 'none';
+        if (eyebrow) eyebrow.style.display = 'none';
 
         // Show success
         const successMsg = modal.querySelector('.success-message');
-        successMsg.style.display = 'block';
+        if (successMsg) successMsg.style.display = 'block';
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
@@ -78,9 +102,12 @@ if (form) {
             setTimeout(() => {
                 form.style.display = 'flex';
                 form.reset();
-                modal.querySelector('h2').style.display = 'block';
-                modal.querySelector('.eyebrow').style.display = 'block';
-                modal.querySelector('.success-message').style.display = 'none';
+                const h2 = modal.querySelector('h2');
+                const eyebrow = modal.querySelector('.eyebrow');
+                const successMsg = modal.querySelector('.success-message');
+                if (h2) h2.style.display = 'block';
+                if (eyebrow) eyebrow.style.display = 'block';
+                if (successMsg) successMsg.style.display = 'none';
             }, 500);
         });
     }
