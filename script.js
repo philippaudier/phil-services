@@ -259,29 +259,43 @@ const initHUD = () => {
     window.addEventListener('scroll', updateHUD);
     updateHUD();
 
-    // Quantum Morphing Transition
-    const morphOverlay = document.createElement('div');
-    morphOverlay.className = 'quantum-morph-overlay';
-    morphOverlay.innerHTML = `
-        <div class="morph-fragment"></div>
-        <div class="morph-flash"></div>
-        <div class="morph-loader">
-            <div class="morph-spinner"></div>
-            <span class="morph-status">Initialisation Uplink...</span>
+    // 3D Flip Page Transition
+    // Wrap main content for flip effect
+    const mainContent = document.querySelector('main') || document.body.firstElementChild;
+
+    // Create flip overlay (shown during transition)
+    const flipOverlay = document.createElement('div');
+    flipOverlay.className = 'quantum-morph-overlay';
+    flipOverlay.innerHTML = `
+        <span class="flip-destination"></span>
+        <span class="flip-status">TRANSFERT EN COURS</span>
+        <div class="flip-progress">
+            <div class="flip-progress-bar"></div>
         </div>
     `;
-    document.body.appendChild(morphOverlay);
+    document.body.appendChild(flipOverlay);
 
     document.querySelectorAll('.project-link').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetUrl = this.getAttribute('href');
+            const projectName = this.closest('.portfolio-tile')?.dataset.project || 'Projet';
 
-            morphOverlay.classList.add('active');
+            // Set destination name
+            flipOverlay.querySelector('.flip-destination').textContent = projectName;
 
+            // Start 3D flip animation
+            document.body.classList.add('flipping-out');
+
+            // Show overlay midway through flip
+            setTimeout(() => {
+                flipOverlay.classList.add('active');
+            }, 300);
+
+            // Navigate after animation
             setTimeout(() => {
                 window.location.href = targetUrl;
-            }, 800);
+            }, 900);
         });
     });
 };
