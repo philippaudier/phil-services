@@ -278,4 +278,9 @@ const initHUD = () => {
     });
 };
 
-document.addEventListener('DOMContentLoaded', initHUD);
+document.addEventListener('DOMContentLoaded', () => {
+    initHUD();
+    scrollReveal();
+});
+
+window.addEventListener('scroll', scrollReveal);
